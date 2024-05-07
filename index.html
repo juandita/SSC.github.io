@@ -31,7 +31,7 @@
 
         function registrarCliente() {
             var formData = new FormData(document.getElementById('registroForm'));
-            fetch('http://viaducto.proxy.rlwy.net:14966/registrar_cliente', {
+            fetch('mysql://root:KtGVFDUkgapjiXNKyasLYMGVMXPCxqAI@viaduct.proxy.rlwy.net:14966/railway', {
                 method: 'POST',
                 body: formData
             })
