@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Registro de Cliente</h1>
-    <form action="guardar_cliente.php" method="POST">
+    <form id="registroForm">
         <label for="nombre">Nombre:</label><br>
         <input type="text" id="nombre" name="nombre" required><br><br>
 
@@ -22,5 +22,34 @@
 
         <input type="submit" value="Registrar Cliente">
     </form>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            registrarCliente();
+        });
+
+        function registrarCliente() {
+            var formData = new FormData(document.getElementById('registroForm'));
+            fetch('https://tu-endpoint-en-railway.com/registrar_cliente', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al registrar el cliente');
+                }
+                return response.text();
+            })
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Ocurrió un error al procesar la solicitud');
+            });
+        }
+    </script>
 </body>
 </html>
+
