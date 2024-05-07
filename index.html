@@ -8,7 +8,7 @@
 <body>
     <h1>Registro de Cliente</h1>
     <form id="registroForm">
-        <!-- El ID del cliente se genera automáticamente -->
+        <!-- El ID del cliente se generará automáticamente -->
         <input type="hidden" id="clienteId" name="clienteId">
         
         <label for="nombre">Nombre:</label><br>
@@ -33,12 +33,8 @@
         });
 
         function registrarCliente() {
-            // Generar un UUID único para el ID del cliente
-            var clienteId = generateUUID();
-            document.getElementById('clienteId').value = clienteId;
-            
             var formData = new FormData(document.getElementById('registroForm'));
-            fetch('mysql://root:KtGVFDUkgapjiXNKyasLYMGVMXPCxqAI@viaduct.proxy.rlwy.net:14966/railway', {
+            fetch('http://viaduct.proxy.rlwy.net:14966', {
                 method: 'POST',
                 body: formData
             })
@@ -58,18 +54,8 @@
                 alert('Ocurrió un error al procesar la solicitud');
             });
         }
-
-        // Función para generar un UUID único
-        function generateUUID() { 
-            var d = new Date().getTime(); 
-            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { 
-                var r = (d + Math.random()*16)%16 | 0; 
-                d = Math.floor(d/16); 
-                return (c=='x' ? r : (r&0x3|0x8)).toString(16); 
-            }); 
-            return uuid;
-        }
     </script>
 </body>
 </html>
+
 
