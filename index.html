@@ -7,10 +7,7 @@
 </head>
 <body>
     <h1>Registro de Cliente</h1>
-    <form id="registroForm">
-        <!-- El ID del cliente se generará automáticamente -->
-        <input type="hidden" id="clienteId" name="clienteId">
-        
+    <form action="registrar_cliente.php" method="post">
         <label for="nombre">Nombre:</label><br>
         <input type="text" id="nombre" name="nombre" required><br><br>
 
@@ -25,36 +22,6 @@
 
         <input type="submit" value="Registrar Cliente">
     </form>
-
-    <script>
-        document.getElementById('registroForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            registrarCliente();
-        });
-
-        function registrarCliente() {
-            var formData = new FormData(document.getElementById('registroForm'));
-            fetch('http://viaduct.proxy.rlwy.net:14966', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al registrar el cliente');
-                }
-                return response.text();
-            })
-            .then(data => {
-                alert(data);
-                // Limpiar el formulario después de un registro exitoso
-                document.getElementById('registroForm').reset();
-            })
-            .catch(error => {
-                console.error(error);
-                alert('Ocurrió un error al procesar la solicitud');
-            });
-        }
-    </script>
 </body>
 </html>
 
