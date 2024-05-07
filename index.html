@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Ticket</title>
+</head>
+<body>
+    <h1>Crear Ticket</h1>
+    <form action="guardar_ticket.php" method="POST">
+        <label for="descripcion">Descripción del Ticket:</label><br>
+        <textarea id="descripcion" name="descripcion" required></textarea><br><br>
+
+        <label for="cliente">Cliente:</label><br>
+        <select id="cliente" name="cliente" required>
+            <option value="" selected disabled>Selecciona un cliente</option>
+            <!-- Aquí puedes cargar dinámicamente los clientes desde la base de datos -->
+            <option value="1">Cliente 1</option>
+            <option value="2">Cliente 2</option>
+            <!-- Agrega más opciones según sea necesario -->
+        </select><br><br>
+
+        <!-- Agregar un campo oculto para el ID del empleado (en este caso, 1) -->
+        <input type="hidden" id="empleado" name="empleado" value="1">
+
+        <input type="submit" value="Crear Ticket">
+    </form>
+</body>
+</html>
