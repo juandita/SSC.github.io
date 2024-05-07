@@ -1,8 +1,9 @@
 <?php
 // Obtener los datos del formulario
-$descripcion = $_POST['descripcion'];
-$cliente_id = $_POST['cliente'];
-$empleado_id = $_POST['empleado'];
+$nombre = $_POST['nombre'];
+$correo = $_POST['correo'];
+$telefono = $_POST['telefono'];
+$direccion = $_POST['direccion'];
 
 // Conectar a la base de datos
 $conexion = new mysqli("viaduct.proxy.rlwy.net", "root", "KtGVFDUkgapjiXNKyasLYMGVMXPCxqAI", "railway", 14966);
@@ -12,14 +13,14 @@ if ($conexion->connect_error) {
     die("Error al conectar a la base de datos: " . $conexion->connect_error);
 }
 
-// Preparar la consulta SQL para insertar el ticket en la base de datos
-$sql = "INSERT INTO Ticket (Descripcion_TK, Estado_TK, Empleado_ID, Cliente_ID) VALUES ('$descripcion', 'Abierto', '$empleado_id', '$cliente_id')";
+// Preparar la consulta SQL para insertar el cliente en la base de datos
+$sql = "INSERT INTO Cliente (Nombre_Cli, Correo_Cli, Telefono_Cli, Direccion_Cli) VALUES ('$nombre', '$correo', '$telefono', '$direccion')";
 
 // Ejecutar la consulta SQL
 if ($conexion->query($sql) === TRUE) {
-    echo "Ticket creado con éxito";
+    echo "Cliente registrado con éxito";
 } else {
-    echo "Error al crear el ticket: " . $conexion->error;
+    echo "Error al registrar el cliente: " . $conexion->error;
 }
 
 // Cerrar la conexión a la base de datos
